@@ -20,14 +20,14 @@ public class Biglietto {
     @Column(name = "BoolVidimato")
     private boolean vidimato;
 
-    public Biglietto(int IDUtente, boolean vidimato, LocalDate scadenza, LocalDate dataEmissione, int IDMezzo, int IDEmissione) {
-        this.IDUtente = IDUtente;
+    public Biglietto(boolean vidimato, LocalDate scadenza, LocalDate dataEmissione, int IDMezzo, int IDEmissione) {
         this.vidimato = vidimato;
         this.scadenza = scadenza;
         this.dataEmissione = dataEmissione;
         this.IDMezzo = IDMezzo;
         this.IDEmissione = IDEmissione;
     }
+
 
     public LocalDate getScadenza() {
         return scadenza;
