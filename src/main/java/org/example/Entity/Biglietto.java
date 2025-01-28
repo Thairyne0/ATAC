@@ -21,29 +21,18 @@ public class Biglietto {
     private Mezzi mezzoDiTrasporto;
     @Column(name = "DataEmissione")
     private LocalDate dataEmissione;
-    @Column(name = "Scadenza")
-    private LocalDate scadenza;
     @Column(name = "BoolVidimato")
     private boolean vidimato;
 
 
      public Biglietto(){}
 
-    public Biglietto(boolean vidimato, LocalDate scadenza, LocalDate dataEmissione, Mezzi mezzoDiTrasporto, PuntoEmissione puntoEmissione, Utente utente) {
+    public Biglietto(boolean vidimato,LocalDate dataEmissione, Mezzi mezzoDiTrasporto, PuntoEmissione puntoEmissione, Utente utente) {
         this.vidimato = vidimato;
-        this.scadenza = scadenza;
         this.dataEmissione = dataEmissione;
         this.mezzoDiTrasporto = mezzoDiTrasporto;
         this.puntoEmissione = puntoEmissione;
         this.utente = utente;
-    }
-
-    public LocalDate getScadenza() {
-        return scadenza;
-    }
-
-    public void setScadenza(LocalDate scadenza) {
-        this.scadenza = scadenza;
     }
 
     public boolean isVidimato() {
