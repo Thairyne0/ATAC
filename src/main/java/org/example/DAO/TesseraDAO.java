@@ -7,7 +7,6 @@ import org.example.Entity.Tessera;
 public class TesseraDAO {
 
 	private EntityManager em;
-
 	public TesseraDAO (EntityManager em) {
 		this.em = em;
 	}
