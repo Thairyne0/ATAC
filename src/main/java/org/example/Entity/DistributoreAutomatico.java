@@ -13,8 +13,8 @@ public class DistributoreAutomatico extends PuntoEmissione {
 	public DistributoreAutomatico () {
 	}
 
-	public DistributoreAutomatico (int idEmissione, int numeroBiglietti, int numeroEmissioni, PuntoEmissione.StatoDistributore stato) {
-		super(idEmissione, numeroBiglietti, numeroEmissioni);
+	public DistributoreAutomatico ( int numeroBiglietti, int numeroEmissioni, PuntoEmissione.StatoDistributore stato, int numeroAbbonameti) {
+		super(numeroBiglietti, numeroEmissioni, numeroAbbonameti);
 		this.stato = stato;
 	}
 

@@ -4,25 +4,28 @@ import jakarta.persistence.*;
 
 @Entity
 @Table (name = "puntoemissione")
-@Inheritance (strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance (strategy = InheritanceType.JOINED)
 public abstract class PuntoEmissione {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idEmissione;
 
-	@Column (name = "numero_biglietti")
+	@Column (name = "numerobiglietti")
 	private int numeroBiglietti;
 
-	@Column (name = "numero_emissioni")
+	@Column (name = "numeroabbonamenti")
+	private int numeroAbbonamenti;
+
+	@Column (name = "numeroemissioni")
 	private int numeroEmissioni;
 
 	public PuntoEmissione () {
 	}
 
-	public PuntoEmissione (int idEmissione, int numeroBiglietti, int numeroEmissioni) {
-		this.idEmissione = idEmissione;
+	public PuntoEmissione ( int numeroBiglietti, int numeroEmissioni, int numeroAbbonamenti) {
 		this.numeroBiglietti = numeroBiglietti;
 		this.numeroEmissioni = numeroEmissioni;
+		this.numeroAbbonamenti = numeroAbbonamenti;
 	}
 
 	public int getIdEmissione () {

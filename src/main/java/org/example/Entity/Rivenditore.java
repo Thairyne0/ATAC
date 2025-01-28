@@ -10,40 +10,46 @@ import java.time.LocalTime;
 @Table (name = "rivenditore")
 public class Rivenditore extends PuntoEmissione {
 
-	@Column (name = "orario_apertura")
-	private LocalTime orarioApertura;
+	@Column (name = "nomerivenditore")
+	private String nomeRivenditore;
 
-	@Column (name = "orario_chiusura")
-	private LocalTime orarioChiusura;
+	@Column (name = "orarioapertura")
+	private String orarioApertura;
+
+	@Column (name = "orariochiusura")
+	private String orarioChiusura;
 
 	public Rivenditore () {
 	}
 
-	public Rivenditore (int idEmissione, int numeroBiglietti, int numeroEmissioni, LocalTime orarioApertura, LocalTime orarioChiusura) {
-		super(idEmissione, numeroBiglietti, numeroEmissioni);
+	public Rivenditore (String nomeRivenditore, int numeroBiglietti, int numeroEmissioni, String orarioApertura, String orarioChiusura, int numeroAbbonamenti) {
+		super( numeroBiglietti, numeroEmissioni, numeroAbbonamenti);
+		this.nomeRivenditore = nomeRivenditore;
 		this.orarioApertura = orarioApertura;
 		this.orarioChiusura = orarioChiusura;
 	}
 
-	public LocalTime getOrarioApertura () {
+	public String getOrarioApertura () {
 		return orarioApertura;
 	}
 
-	public void setOrarioApertura (LocalTime orarioApertura) {
+	public void setOrarioApertura (String orarioApertura) {
 		this.orarioApertura = orarioApertura;
 	}
 
-	public LocalTime getOrarioChiusura () {
+	public String getOrarioChiusura () {
 		return orarioChiusura;
 	}
 
-	public void setOrarioChiusura (LocalTime orarioChiusura) {
+	public void setOrarioChiusura (String orarioChiusura) {
 		this.orarioChiusura = orarioChiusura;
 	}
 
 	@Override
 	public String descrizione () {
-		return String.format("org.example.Entity.Rivenditore [ID : %d] - Orario: %s - %s, Biglietti disponibili: %d, Numero emissioni: %d",
+		return String.format("Rivenditore [ID : %d] - Orario: %s - %s, Biglietti disponibili: %d, Numero emissioni: %d",
 			getIdEmissione(), getOrarioApertura(), getOrarioChiusura(), getNumeroBiglietti(), getNumeroEmissioni());
 	}
+
+
 }

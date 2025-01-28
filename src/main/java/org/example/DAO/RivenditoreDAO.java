@@ -4,7 +4,10 @@ package org.example.DAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
+import jakarta.persistence.TypedQuery;
 import org.example.Entity.Rivenditore;
+
+import java.util.List;
 
 public class RivenditoreDAO {
 
@@ -27,5 +30,14 @@ public class RivenditoreDAO {
 			e.printStackTrace();
 		}
 
+	}
+
+	public List<Rivenditore> getAllRivenditori() {
+		TypedQuery<Rivenditore> query = em.createQuery("SELECT r FROM Rivenditore r", Rivenditore.class);
+		return query.getResultList();
+	}
+
+	public Rivenditore getRivenditoreById(Long id) {
+		return em.find(Rivenditore.class, id);
 	}
 }

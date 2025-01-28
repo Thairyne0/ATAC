@@ -15,9 +15,10 @@ public class Utente {
 
     public Utente(){}
 
-    public Utente(String nome, String cognome){
+    public Utente(String nome, String cognome, boolean boolTessera){
         this.nome = nome;
         this.cognome = cognome;
+        this.boolTessera = boolTessera;
     }
 
     public boolean isBoolTessera() {
