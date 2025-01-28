@@ -77,7 +77,7 @@ public class Main {
      public static Biglietto buyTicket(Scanner scanner){
          System.out.println("Scegli il mezzo di trasporto : Bus, Tram");
          String mezzoScelto=scanner.nextLine();
-     };
+     }
 
     public static void registeUser(Scanner Scanner, UtenteDAO utenteDAO) {
         System.out.println("Inserisci ul tuo nome");
