@@ -10,9 +10,15 @@ public class Biglietto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IDBiglietto;
-    private int IDUtente;
-    private int IDEmissione;
-    private int IDMezzo;
+    @ManyToOne
+    @JoinColumn(name = "IDUtente")
+    private Utente utente;
+    @ManyToOne
+    @JoinColumn(name = "IDEmissione")
+    private PuntoEmissione puntoEmissione;
+    @ManyToOne
+    @JoinColumn(name = "IDMezzo")
+    private Mezzi mezzoDiTrasporto;
     @Column(name = "DataEmissione")
     private LocalDate dataEmissione;
     @Column(name = "Scadenza")
@@ -20,14 +26,14 @@ public class Biglietto {
     @Column(name = "BoolVidimato")
     private boolean vidimato;
 
-    public Biglietto(boolean vidimato, LocalDate scadenza, LocalDate dataEmissione, int IDMezzo, int IDEmissione) {
+    public Biglietto(boolean vidimato, LocalDate scadenza, LocalDate dataEmissione, Mezzi mezzoDiTrasporto, PuntoEmissione puntoEmissione, Utente utente) {
         this.vidimato = vidimato;
         this.scadenza = scadenza;
         this.dataEmissione = dataEmissione;
-        this.IDMezzo = IDMezzo;
-        this.IDEmissione = IDEmissione;
+        this.mezzoDiTrasporto = mezzoDiTrasporto;
+        this.puntoEmissione = puntoEmissione;
+        this.utente = utente;
     }
-
 
     public LocalDate getScadenza() {
         return scadenza;
@@ -53,28 +59,28 @@ public class Biglietto {
         this.dataEmissione = dataEmissione;
     }
 
-    public int getIDMezzo() {
-        return IDMezzo;
+    public PuntoEmissione getPuntoEmissione() {
+        return puntoEmissione;
     }
 
-    public void setIDMezzo(int IDMezzo) {
-        this.IDMezzo = IDMezzo;
+    public void setPuntoEmissione(PuntoEmissione puntoEmissione) {
+        this.puntoEmissione = puntoEmissione;
     }
 
-    public int getIDEmissione() {
-        return IDEmissione;
+    public Mezzi getMezzoDiTrasporto() {
+        return mezzoDiTrasporto;
     }
 
-    public void setIDEmissione(int IDEmissione) {
-        this.IDEmissione = IDEmissione;
+    public void setMezzoDiTrasporto(Mezzi mezzoDiTrasporto) {
+        this.mezzoDiTrasporto = mezzoDiTrasporto;
     }
 
-    public int getIDUtente() {
-        return IDUtente;
+    public Utente getUtente() {
+        return utente;
     }
 
-    public void setIDUtente(int IDUtente) {
-        this.IDUtente = IDUtente;
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 
     public int getIDBiglietto() {
