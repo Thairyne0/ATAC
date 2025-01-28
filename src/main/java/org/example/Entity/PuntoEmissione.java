@@ -1,10 +1,23 @@
 package org.example.Entity;
 
-abstract class PuntoEmissione {
+import jakarta.persistence.*;
 
+@Entity
+@Table (name = "puntoemissione")
+@Inheritance (strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class PuntoEmissione {
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int idEmissione;
+
+	@Column (name = "numero_biglietti")
 	private int numeroBiglietti;
+
+	@Column (name = "numero_emissioni")
 	private int numeroEmissioni;
+
+	public PuntoEmissione () {
+	}
 
 	public PuntoEmissione (int idEmissione, int numeroBiglietti, int numeroEmissioni) {
 		this.idEmissione = idEmissione;

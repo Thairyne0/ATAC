@@ -26,6 +26,9 @@ public class Biglietto {
     @Column(name = "BoolVidimato")
     private boolean vidimato;
 
+
+     public Biglietto(){}
+
     public Biglietto(boolean vidimato, LocalDate scadenza, LocalDate dataEmissione, Mezzi mezzoDiTrasporto, PuntoEmissione puntoEmissione, Utente utente) {
         this.vidimato = vidimato;
         this.scadenza = scadenza;
