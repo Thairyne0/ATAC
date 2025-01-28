@@ -1,7 +1,6 @@
-package org.example.Tessera;
+package org.example.Entity;
 
 import jakarta.persistence.*;
-import org.example.utente.Utente;
 
 import java.time.LocalDate;
 

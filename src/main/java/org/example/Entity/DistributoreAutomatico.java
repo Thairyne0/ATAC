@@ -1,19 +1,21 @@
+package org.example.Entity;
+
 import jakarta.persistence.Entity;
 
 @Entity
 public class DistributoreAutomatico extends PuntoEmissione {
-	private StatoDistributore stato;
+	private PuntoEmissione.StatoDistributore stato;
 
-	public DistributoreAutomatico (int idEmissione, int numeroBiglietti, int numeroEmissioni, StatoDistributore stato) {
+	public DistributoreAutomatico (int idEmissione, int numeroBiglietti, int numeroEmissioni, PuntoEmissione.StatoDistributore stato) {
 		super(idEmissione, numeroBiglietti, numeroEmissioni);
 		this.stato = stato;
 	}
 
-	public StatoDistributore getStato () {
+	public PuntoEmissione.StatoDistributore getStato () {
 		return stato;
 	}
 
-	public void setStato (StatoDistributore stato) {
+	public void setStato (PuntoEmissione.StatoDistributore stato) {
 		this.stato = stato;
 	}
 

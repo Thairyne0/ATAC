@@ -1,24 +1,25 @@
-package org.example.Tessera;
+package org.example.DAO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import org.example.Entity.Utente;
 
-public class TesseraDAO {
+public class UtenteDAO {
 
     private EntityManager em;
 
-    public TesseraDAO(EntityManager em){
+    public UtenteDAO(EntityManager em){
         this.em = em;
     }
 
-    public void save(Tessera tessera) {
+    public void save(Utente utente){
         EntityTransaction transaction = em.getTransaction();
-        try {
+        try{
             transaction.begin();
-            em.persist(tessera);
+            em.persist(utente);
             transaction.commit();
-        } catch (Exception e) {
-            if (transaction.isActive()) {
+        }catch (Exception e){
+            if (transaction.isActive()){
                 transaction.rollback();
             }
             e.printStackTrace();
