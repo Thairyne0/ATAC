@@ -1,10 +1,17 @@
 package org.example.Entity;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 @Entity
+@Table (name = "distributoreautomatico")
 public class DistributoreAutomatico extends PuntoEmissione {
+
+	@Enumerated (EnumType.STRING)
+	@Column (name = "stato_distributore")
 	private PuntoEmissione.StatoDistributore stato;
+
+	public DistributoreAutomatico () {
+	}
 
 	public DistributoreAutomatico (int idEmissione, int numeroBiglietti, int numeroEmissioni, PuntoEmissione.StatoDistributore stato) {
 		super(idEmissione, numeroBiglietti, numeroEmissioni);
