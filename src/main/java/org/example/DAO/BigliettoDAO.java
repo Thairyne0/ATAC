@@ -53,7 +53,7 @@ public class BigliettoDAO {
 
     }
 
-    public Biglietto foundById(int id) {
+    public Biglietto findById(int id) {
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
