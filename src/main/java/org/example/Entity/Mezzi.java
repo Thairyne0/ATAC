@@ -8,19 +8,24 @@ public class Mezzi {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long IDMezzo;
-
-    private int IdTratta;
+    @ManyToOne
+    @JoinColumn(name ="IDTratta" )
+    private Tratta tratta;
     private String TipoMezzo;
     private String Capienza;
 
     public Mezzi (){}
 
-    public int getIdTratta() {
-        return IdTratta;
+    public void setIDMezzo(Long IDMezzo) {
+        this.IDMezzo = IDMezzo;
     }
 
-    public void setIdTratta(int idTratta) {
-        IdTratta = idTratta;
+    public Tratta getTratta() {
+        return tratta;
+    }
+
+    public void setTratta(Tratta tratta) {
+        this.tratta = tratta;
     }
 
     public String getTipoMezzo() {
