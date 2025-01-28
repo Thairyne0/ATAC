@@ -1,10 +1,23 @@
 package org.example.Entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import java.time.LocalTime;
 
+@Entity
+@Table (name = "rivenditore")
 public class Rivenditore extends PuntoEmissione {
+
+	@Column (name = "orario_apertura")
 	private LocalTime orarioApertura;
+
+	@Column (name = "orario_chiusura")
 	private LocalTime orarioChiusura;
+
+	public Rivenditore () {
+	}
 
 	public Rivenditore (int idEmissione, int numeroBiglietti, int numeroEmissioni, LocalTime orarioApertura, LocalTime orarioChiusura) {
 		super(idEmissione, numeroBiglietti, numeroEmissioni);
