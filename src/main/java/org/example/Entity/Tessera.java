@@ -11,7 +11,7 @@ public class Tessera {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTessera;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "idutente", nullable = false)
     private Utente utente;
 
