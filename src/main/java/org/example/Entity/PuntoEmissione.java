@@ -1,3 +1,4 @@
+package org.example.Entity;
 
 abstract class PuntoEmissione {
 

@@ -1,3 +1,5 @@
+package org.example.Entity;
+
 import java.time.LocalTime;
 
 public class Rivenditore extends PuntoEmissione {
@@ -28,7 +30,7 @@ public class Rivenditore extends PuntoEmissione {
 
 	@Override
 	public String descrizione () {
-		return String.format("Rivenditore [ID : %d] - Orario: %s - %s, Biglietti disponibili: %d, Numero emissioni: %d",
+		return String.format("org.example.Entity.Rivenditore [ID : %d] - Orario: %s - %s, Biglietti disponibili: %d, Numero emissioni: %d",
 			getIdEmissione(), getOrarioApertura(), getOrarioChiusura(), getNumeroBiglietti(), getNumeroEmissioni());
 	}
 }
