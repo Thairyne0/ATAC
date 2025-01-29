@@ -2,7 +2,11 @@ package org.example.DAO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 import org.example.Entity.DistributoreAutomatico;
+import org.example.Entity.DistributoreAutomatico;
+
+import java.util.List;
 
 
 public class DistributoreAutomaticoDAO {
@@ -25,5 +29,11 @@ public class DistributoreAutomaticoDAO {
 			e.printStackTrace();
 		}
 
+	}
+
+
+	public List<DistributoreAutomatico> getAllDistributori() {
+		TypedQuery<DistributoreAutomatico> query = em.createQuery("SELECT d FROM DistributoreAutomatico d", DistributoreAutomatico.class);
+		return query.getResultList();
 	}
 }

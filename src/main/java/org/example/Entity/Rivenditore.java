@@ -45,10 +45,22 @@ public class Rivenditore extends PuntoEmissione {
 		this.orarioChiusura = orarioChiusura;
 	}
 
+	public String getNomeRivenditore() {
+		return nomeRivenditore;
+	}
+
+	public void setNomeRivenditore(String nomeRivenditore) {
+		this.nomeRivenditore = nomeRivenditore;
+	}
+
 	@Override
 	public String descrizione () {
 		return String.format("Rivenditore [ID : %d] - Orario: %s - %s, Biglietti disponibili: %d, Numero emissioni: %d",
 			getIdEmissione(), getOrarioApertura(), getOrarioChiusura(), getNumeroBiglietti(), getNumeroEmissioni());
+	}
+
+	public String stampaNome (){
+		return ("Rivenditore: " + getNomeRivenditore());
 	}
 
 

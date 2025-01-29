@@ -10,6 +10,9 @@ public class DistributoreAutomatico extends PuntoEmissione {
 	@Column (name = "stato_distributore")
 	private PuntoEmissione.StatoDistributore stato;
 
+	@Column (name = "nomedistributore")
+	private String nome;
+
 	public DistributoreAutomatico () {
 	}
 
@@ -26,9 +29,21 @@ public class DistributoreAutomatico extends PuntoEmissione {
 		this.stato = stato;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 	@Override
 	public String descrizione () {
 		return String.format("Distributore Automatico [ID: %d] - Stato: %s, Biglietti Disponibili: %d , Numero Emissioni: %d",
 			getIdEmissione(), stato, getNumeroBiglietti(), getNumeroEmissioni());
+	}
+
+	public String stampaNome (){
+		return ("Distributore: " + getNome());
 	}
 }

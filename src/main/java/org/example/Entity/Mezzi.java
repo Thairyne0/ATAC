@@ -47,4 +47,9 @@ public class Mezzi {
     public Long getIDMezzo() {
         return IDMezzo;
     }
+
+
+    public String stampaMezzo (){
+            return ("Mezzo: " + getTipoMezzo() + " " + getIDMezzo());
+    }
 }

@@ -46,7 +46,7 @@ public class UtenteDAO {
             }
             e.printStackTrace();
         } finally {
-            em.close();
+//            em.close();
         }
         return null;
     }

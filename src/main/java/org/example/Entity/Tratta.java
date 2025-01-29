@@ -3,6 +3,8 @@ package org.example.Entity;
 import jakarta.persistence.*;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table (name = "Tratta")
@@ -13,10 +15,10 @@ public class Tratta {
 
     private String ZonaDiPartenza;
     private String Capolinea;
-    private Duration TempoPrevisto;
+    private LocalTime TempoPrevisto;
     private int NumeroDiViete;
-    private Duration TempoEffettivo;
-    private Duration TempoMedio;
+    private LocalTime TempoEffettivo;
+    private LocalTime TempoMedio;
 
     public Long getIDTratta() {
         return IDTratta;
@@ -38,11 +40,11 @@ public class Tratta {
         Capolinea = capolinea;
     }
 
-    public Duration getTempoPrevisto() {
+    public LocalTime getTempoPrevisto() {
         return TempoPrevisto;
     }
 
-    public void setTempoPrevisto(Duration tempoPrevisto) {
+    public void setTempoPrevisto(LocalTime tempoPrevisto) {
         TempoPrevisto = tempoPrevisto;
     }
 
@@ -54,19 +56,19 @@ public class Tratta {
         NumeroDiViete = numeroDiViete;
     }
 
-    public Duration getTempoEffettivo() {
+    public LocalTime getTempoEffettivo() {
         return TempoEffettivo;
     }
 
-    public void setTempoEffettivo(Duration tempoEffettivo) {
+    public void setTempoEffettivo(LocalTime tempoEffettivo) {
         TempoEffettivo = tempoEffettivo;
     }
 
-    public Duration getTempoMedio() {
+    public LocalTime getTempoMedio() {
         return TempoMedio;
     }
 
-    public void setTempoMedio(Duration tempoMedio) {
+    public void setTempoMedio(LocalTime tempoMedio) {
         TempoMedio = tempoMedio;
     }
 }
