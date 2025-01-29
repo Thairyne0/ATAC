@@ -2,8 +2,12 @@ package org.example.DAO;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.TypedQuery;
 import org.example.Entity.Biglietto;
+import org.example.Entity.Tessera;
 import org.example.Entity.Utente;
+
+import java.util.List;
 
 public class UtenteDAO {
 
@@ -49,6 +53,15 @@ public class UtenteDAO {
 //            em.close();
         }
         return null;
+    }
+
+    public Utente getUtentePerNomeECognome (String nome, String cognome) {
+        TypedQuery<Utente> query = em.createQuery(
+           "SELECT u FROM Utente u WHERE u.nome = :nome AND u.cognome = :cognome",
+           Utente.class);
+        query.setParameter("nome", nome);
+        query.setParameter("cognome", cognome);
+        return query.getSingleResult();
     }
 
 }
