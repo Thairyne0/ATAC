@@ -77,7 +77,7 @@ public class Main {
 									int decisione = scanner.nextInt();
 									scanner.nextLine();
 									if (decisione == 1) {
-										creoTessera(scanner, utenteDAO, em);
+										creoTessera(utenteDAO, em, nome, cognome);
 									} else if (decisione == 2) {
 										System.out.println("Arrivederci");
 										break;
@@ -109,7 +109,11 @@ public class Main {
 								break;
 							case 3:
 								//creo tessera
-								creoTessera(scanner, utenteDAO, em);
+								System.out.println("inserisci il tuo nome");
+								String name = scanner.nextLine();
+								System.out.println("inserisci il tuo cognome");
+								String surname = scanner.nextLine();
+								creoTessera(utenteDAO, em, name, surname);
 								break;
 
 
@@ -221,19 +225,26 @@ public class Main {
 
 	}
 
-	public static void creoTessera (Scanner scanner, UtenteDAO utenteDAO, EntityManager em) {
+	public static void creoTessera (UtenteDAO utenteDAO, EntityManager em, String nome, String cognome) {
 		// tessera
-		System.out.println("inserisci il tuo nome");
-		String nome = scanner.nextLine();
-		System.out.println("inserisci il tuo cognome");
-		String cognome = scanner.nextLine();
-		Utente utenteCreato = new Utente(nome, cognome, true);
-		utenteDAO.save(utenteCreato);
-		Tessera tesseraUtente = new Tessera(utenteCreato);
-		TesseraDAO tesseraDAO = new TesseraDAO(em);
-		tesseraDAO.save(tesseraUtente);
-		System.out.println("Tessera creata: " + tesseraUtente);
-
+		em.getTransaction().begin();
+		Utente utenteEsistente = utenteDAO.getUtentePerNomeECognome(nome, cognome);
+		if (utenteEsistente != null) {
+			utenteEsistente.setBoolTessera(true);
+			em.merge(utenteEsistente);
+			Tessera tesseraUtente = new Tessera(utenteEsistente);
+			TesseraDAO tesseraDAO = new TesseraDAO(em);
+			tesseraDAO.save(tesseraUtente);
+			System.out.println("Tessera creata: " + tesseraUtente);
+		} else {
+			Utente utenteCreato = new Utente(nome, cognome, true);
+			utenteDAO.save(utenteCreato);
+			Tessera tesseraUtente = new Tessera(utenteCreato);
+			TesseraDAO tesseraDAO = new TesseraDAO(em);
+			tesseraDAO.save(tesseraUtente);
+			System.out.println("Tessera creata: " + tesseraUtente);
+		}
+		em.getTransaction().commit();
 	}
 }
 
