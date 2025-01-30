@@ -16,7 +16,7 @@ public class Tratta {
     private String ZonaDiPartenza;
     private String Capolinea;
     private LocalTime TempoPrevisto;
-    private int NumeroDiViete;
+    private int NumeroDiVolte;
     private LocalTime TempoEffettivo;
     private LocalTime TempoMedio;
 
@@ -48,13 +48,6 @@ public class Tratta {
         TempoPrevisto = tempoPrevisto;
     }
 
-    public int getNumeroDiViete() {
-        return NumeroDiViete;
-    }
-
-    public void setNumeroDiViete(int numeroDiViete) {
-        NumeroDiViete = numeroDiViete;
-    }
 
     public LocalTime getTempoEffettivo() {
         return TempoEffettivo;
@@ -76,4 +69,15 @@ public class Tratta {
         return ("Tratta: " + getCapolinea());
     }
 
+    public String trattaMedia(){
+        return ("Tempo medio della tratta selezionata: " + getTempoMedio());
+    }
+
+    public int getNumeroDiVolte() {
+        return NumeroDiVolte;
+    }
+
+    public void setNumeroDiVolte(int numeroDiVolte) {
+        NumeroDiVolte = numeroDiVolte;
+    }
 }

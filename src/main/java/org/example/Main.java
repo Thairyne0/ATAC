@@ -125,7 +125,7 @@ public class Main {
                         TrattoDAO trattoDAO = new TrattoDAO(em);
                         int c = 1;
                         System.out.println("Premi: ");
-                        System.out.println("1 Per calcolare il tempo medio di una tratta");
+                        System.out.println("1 per calcolare il tempo medio di una tratta");
                         int scelta = scanner.nextInt();
                         scanner.nextLine();
                         switch (scelta) {
@@ -135,8 +135,12 @@ public class Main {
                                     for (Tratta t : tratte) {
                                         System.out.println(c++ + ": " + t.stampaNome());
                                     }
-                                }
-                                finally {
+                                    System.out.println("Scegli una tratta: ");
+                                    int idTratta = scanner.nextInt();
+                                    scanner.nextLine();
+                                    Tratta trattaScelta = trattoDAO.findById(idTratta);
+                                    System.out.println(trattaScelta.trattaMedia());
+                                } finally {
 //                     em.close();
 //                     entityManagerFactory.close();
                                 }
