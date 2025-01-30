@@ -122,9 +122,26 @@ public class Main {
 
 
 					case 2:
+						int c = 1;
 						System.out.println("Premi: ");
-						System.out.println("1 Per ");
+						System.out.println("1 Per calcolare il tempo medio di una tratta");
+						int scelta = scanner.nextInt();
+						scanner.nextLine();
+						switch(scelta){
+							case 1:
+								try {
+
+									List<Tratta> tratte = TrattoDAO.getAllTratta();
+									for (Tratta t : tratte) {
+										System.out.println(c++ + ": " + t.stampaNome());
+									}
+								} finally {
+//                     em.close();
+//                     entityManagerFactory.close();
+								}
+
 						break;
+						}
 				}
 
 

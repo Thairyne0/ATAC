@@ -71,4 +71,9 @@ public class Tratta {
     public void setTempoMedio(LocalTime tempoMedio) {
         TempoMedio = tempoMedio;
     }
+
+    public String stampaNome (){
+        return ("Tratta: " + getCapolinea());
+    }
+
 }
