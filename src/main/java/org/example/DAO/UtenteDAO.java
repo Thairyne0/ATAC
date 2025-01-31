@@ -3,6 +3,7 @@ package org.example.DAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import org.example.Entity.Biglietto;
 import org.example.Entity.Tessera;
 import org.example.Entity.Utente;

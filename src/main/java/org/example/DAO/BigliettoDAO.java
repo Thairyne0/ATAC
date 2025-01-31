@@ -14,6 +14,9 @@ public class BigliettoDAO {
 
 
     public void save(Biglietto biglietto) {
+        if (biglietto.getPuntoEmissione() == null) {
+            throw new IllegalArgumentException("Errore: PuntoEmissione è NULL. Non posso salvare il biglietto!");
+        }
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
@@ -25,7 +28,7 @@ public class BigliettoDAO {
             }
             e.printStackTrace();
         } finally {
-            em.close();
+//            em.close();
         }
     }
 

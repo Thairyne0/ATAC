@@ -54,7 +54,7 @@ public class TrattoDAO {
             }
             e.printStackTrace();
         } finally {
-            em.close();
+//            em.close();
         }
         return null;
     }

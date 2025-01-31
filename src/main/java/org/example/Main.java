@@ -45,7 +45,6 @@ public class Main {
                         int azione = scanner.nextInt();
                         scanner.nextLine();
                         switch (azione) {
-                            //comprare un biglietto
                             case 1:
                                 System.out.println("inserisci il tuo id utente");
                                 int idUtente = scanner.nextInt();
@@ -53,17 +52,24 @@ public class Main {
                                 Utente utenteVerifica = utenteDAO.findById(idUtente);
                                 if (utenteVerifica == null) {
                                     System.out.println("per comprare un biglietto devi registrarti");
-                                    registeUser(scanner, utenteDAO);
+                                    registeUser(scanner);
                                 } else {
                                     System.out.println("Benvenuto! " + utenteVerifica.getNome() + "!");
                                     System.out.println("Procedi con l'acquisto del biglietto.");
-                                    sceltaRivenditore(scanner, em, idRivenditore);
-                                    sceltaMezzo(scanner, em, idMezzo);
+                                    idRivenditore = sceltaRivenditore(scanner, em, idRivenditore);
+                                    idMezzo = sceltaMezzo(scanner, em, idMezzo);
+
+                                    PuntoEmissione puntoEmissione = em.find(PuntoEmissione.class, idRivenditore);
+                                     utenteVerifica = em.find(Utente.class, idUtente);
+                                    Mezzi mezzo = em.find(Mezzi.class, idMezzo);
+
+                                    Biglietto biglietto = new Biglietto(false, LocalDate.now(), mezzo, puntoEmissione, utenteVerifica);
+
+                                    buyBiglietto(scanner, em, biglietto);
 
                                 }
                                 break;
                             case 2:
-                                //da completare con abbonamento
                                 System.out.println("Siamo felici tu voglia spendere soldi, tu... che ne hai");
                                 idRivenditore = sceltaRivenditore(scanner, em, idRivenditore);
                                 System.out.println("Benvenuto, mi dica il suo nome per favore..");
@@ -126,6 +132,7 @@ public class Main {
                         int c = 1;
                         System.out.println("Premi: ");
                         System.out.println("1 per calcolare il tempo medio di una tratta");
+                        System.out.println("2 per sapere il numero di biglietti emessi");
                         int scelta = scanner.nextInt();
                         scanner.nextLine();
                         switch (scelta) {
@@ -140,6 +147,18 @@ public class Main {
                                     scanner.nextLine();
                                     Tratta trattaScelta = trattoDAO.findById(idTratta);
                                     System.out.println(trattaScelta.trattaMedia());
+                                } finally {
+//                     em.close();
+//                     entityManagerFactory.close();
+                                }
+                                break;
+                            case 2:
+                                try {
+                                    DistributoreAutomaticoDAO distributoreAutomaticoDAO = new DistributoreAutomaticoDAO(em);
+                                    List<DistributoreAutomatico> distributoriAutomatici = distributoreAutomaticoDAO.getAllDistributori();
+                                    for (DistributoreAutomatico d : distributoriAutomatici) {
+                                        System.out.println(c++ + ": " + d.stampaNomeNumeroBiglietti());
+                                    }
                                 } finally {
 //                     em.close();
 //                     entityManagerFactory.close();
@@ -173,7 +192,7 @@ public class Main {
                     for (Rivenditore r : rivenditori) {
                         System.out.println(counter++ + ": " + r.stampaNome());
                     }
-                    idRivenditore = scanner.nextInt();
+                    idRivenditore = (scanner.nextInt()+4);
                     scanner.nextLine();
 
                 } finally {
@@ -201,7 +220,16 @@ public class Main {
         return idRivenditore;
     }
 
-    public static void sceltaMezzo(Scanner scanner, EntityManager em, int idMezzo) {
+    public static void buyBiglietto(Scanner scanner, EntityManager em, Biglietto biglietto){
+
+        System.out.println("Acquisto biiglietto in corso...");
+        BigliettoDAO nuovoBiglietto = new BigliettoDAO(em);
+        nuovoBiglietto.save(biglietto);
+        System.out.println("Biglietto acquistato con successo.");
+
+    }
+
+    public static int sceltaMezzo(Scanner scanner, EntityManager em, int idMezzo) {
         MezziDAO mezziDAO = new MezziDAO(em);
         int counter = 1;
         System.out.println("Scegli il mezzo di trasporto :");
@@ -217,9 +245,10 @@ public class Main {
 //                     em.close();
 //                     entityManagerFactory.close();
         }
+        return idMezzo;
     }
 
-    public static void registeUser(Scanner Scanner, UtenteDAO utenteDAO) {
+    public static void registeUser(Scanner Scanner) {
         System.out.println("Inserisci ul tuo nome");
         String nome = Scanner.nextLine();
         System.out.println();
@@ -237,7 +266,7 @@ public class Main {
 
         }
         Utente utente = new Utente(nome, cognome, tessera);
-//        utenteDAO.save(utente);
+
         System.out.println("Utente registrato con successo: " + utente);
 
     }

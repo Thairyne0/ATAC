@@ -46,4 +46,8 @@ public class DistributoreAutomatico extends PuntoEmissione {
 	public String stampaNome (){
 		return ("Distributore: " + getNome());
 	}
+
+	public String stampaNomeNumeroBiglietti(){
+		return ("Distributore:" + getNome() + ", numero biglietti: "+ getNumeroBiglietti());
+	}
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import org.example.Entity.DistributoreAutomatico;
 import org.example.Entity.DistributoreAutomatico;
+import org.example.Entity.Utente;
 
 import java.util.List;
 
@@ -36,4 +37,29 @@ public class DistributoreAutomaticoDAO {
 		TypedQuery<DistributoreAutomatico> query = em.createQuery("SELECT d FROM DistributoreAutomatico d", DistributoreAutomatico.class);
 		return query.getResultList();
 	}
+
+	public DistributoreAutomatico findById(int id) {
+		EntityTransaction transaction = em.getTransaction();
+		try {
+			transaction.begin();
+			DistributoreAutomatico da = em.find(DistributoreAutomatico.class, id);
+			if (da != null) {
+				transaction.commit();
+				return da;
+
+			} else {
+				System.out.println("Distributore con id: " + id + "non trovato");
+
+			}
+		} catch (Exception e) {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+//            em.close();
+		}
+		return null;
+	}
+
 }

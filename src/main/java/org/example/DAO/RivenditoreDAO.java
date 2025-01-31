@@ -6,6 +6,7 @@ import jakarta.persistence.EntityTransaction;
 
 import jakarta.persistence.TypedQuery;
 import org.example.Entity.Rivenditore;
+import org.example.Entity.Utente;
 
 import java.util.List;
 
@@ -40,4 +41,30 @@ public class RivenditoreDAO {
 	public Rivenditore getRivenditoreById(Long id) {
 		return em.find(Rivenditore.class, id);
 	}
+
+	public Rivenditore findById(int id) {
+		EntityTransaction transaction = em.getTransaction();
+		try {
+			transaction.begin();
+			Rivenditore rivenditore = em.find(Rivenditore.class, id);
+			if (rivenditore != null) {
+				transaction.commit();
+				return rivenditore;
+
+			} else {
+				System.out.println("Rivenditore con id: " + id + "non trovato");
+
+			}
+		} catch (Exception e) {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+//            em.close();
+		}
+		return null;
+	}
+
+
 }
